@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import firebase, { auth, provider } from './firebase.js';
+import firebase, { auth, GoogleAuthProvider } from './firebase.js';
 
 import { defaultCharacterShape } from './data';
 import Layout from './Layout';
@@ -14,6 +14,32 @@ class WhiteTree extends Component {
       user: null,
     };
   }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState(() => ({ user }));
+      }
+    });
+  }
+
+  handleSignOut = () => {
+    auth.signOut().then(() => {
+      this.setState(() => ({
+        user: null,
+      }));
+    });
+  };
+
+  handleSignIn = () => {
+    auth.signInWithPopup(GoogleAuthProvider).then(result => {
+      const user = result.user;
+      this.setState(() => ({
+        user,
+      }));
+      console.log(user.displayName);
+    });
+  };
 
   onInputChange(section, input, value) {
     const newSectionState = { ...this.state[section] };
@@ -52,6 +78,11 @@ class WhiteTree extends Component {
       <Layout>
         <div className="character">
           <div className="character-background">
+            {this.state.user && (
+              <label>Welcome {this.state.user.displayName}</label>
+            )}
+            <button onClick={this.handleSignIn}> SIGN IN </button>
+            <button onClick={this.handleSignOut}> SIGN OUT </button>
             {this.renderFormSection('general')}
             {this.renderFormSection('physical')}
             {this.renderFormSection('points')}
