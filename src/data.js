@@ -1,92 +1,136 @@
 // @flow
 type General = {
-  name: string,
+  alignment: string,
   class: string,
-  race: string,
-  align: string,
   deity: string,
+  homeland: string,
+  level: string,
+  name: string,
+  race: string,
   size: string,
-  space: string,
-  reach: string,
 };
 
-type Physical = {
-  gender: string,
-  height: string,
-  weight: string,
+type Appearance = {
   age: string,
-  hair: string,
   eyes: string,
-  skin: string,
+  gender: string,
+  hair: string,
+  height: string,
   misc: string,
+  weight: string,
 };
 
 type Points = {
-  hp: number,
   gp: number,
-  level: number,
+  hp: number,
+  reach: number,
+  space: number,
+  speed: number,
   xp: number,
-  notes: string,
+};
+
+type Ability = {
+  score: number,
+  modifier: number,
 };
 
 type Abilities = {
-  str: number,
-  dex: number,
-  con: number,
-  int: number,
-  wis: number,
-  cha: number,
+  str: Ability,
+  dex: Ability,
+  con: Ability,
+  int: Ability,
+  wis: Ability,
+  cha: Ability,
 };
 
 type Attack = {
-  melee: number,
-  range: number,
   bab: number,
   cmb: number,
   conc: number,
   init: number,
+  melee: number,
+  range: number,
 };
 
 type Defense = {
   ac: number,
-  touch: number,
   cmd: number,
   fort: number,
   ref: number,
+  touch: number,
   will: number,
 };
 
+type Weapon = {
+  ammunition: string,
+  attack: number,
+  crit: number,
+  dmg: number,
+  name: string,
+  range: number,
+  type: string,
+};
+
+type Armor = {
+  bonus: number,
+  checkPenalty: number,
+  name: string,
+  properties: string,
+  spellFailure: number,
+  type: string,
+  weight: number,
+};
+
+type Gear = {
+  name: string,
+  weight: number,
+};
+
 type Equipment = {
-  'weapon 1': string,
-  'weapon 2': string,
-  'armor 1': string,
-  'armor 2': string,
-  'misc 1': string,
-  'misc 2': string,
+  armor: Array<Armor>,
+  gear: Array<Gear>,
+  weapon1: Weapon,
+  weapon2: Weapon,
+};
+
+type Skill = {
+  abilityName: string,
+  abilityModifier: number,
+  classSkill: boolean,
+  miscModifier: number,
+  name: string,
+  ranks: number,
+  totalBonus: number,
+};
+
+type Skills = {
+  acrobatics: Skill,
+  // TODO
 };
 
 type Character = {
-  general: General,
-  physical: Physical,
-  points: Points,
   abilities: Abilities,
+  appearance: Appearance,
   attack: Attack,
   defense: Defense,
   equipment: Equipment,
+  general: General,
+  points: Points,
+  skills: Skills,
 };
 
-const defaultCharacterShape: Character = {
+export const defaultCharacterShape: Character = {
   general: {
     name: '',
     class: '',
     race: '',
-    align: '',
+    alignment: '',
     deity: '',
     size: '',
     space: '',
     reach: '',
   },
-  physical: {
+  appearance: {
     gender: '',
     height: '',
     weight: '',
@@ -134,70 +178,5 @@ const defaultCharacterShape: Character = {
     'armor 2': '',
     'misc 1': '',
     'misc 2': '',
-  },
-};
-
-module.exports = {
-  defaultCharacterShape,
-  heimdall: {
-    general: {
-      name: 'Heimdall',
-      class: 'Paladin',
-      race: 'Human',
-      align: 'Lawful Good',
-      deity: 'Sarenrae',
-      size: 'Medium',
-      space: '5ft (1x1)',
-      reach: '5ft (1)',
-    },
-    physical: {
-      gender: 'Male',
-      height: '6ft 10in',
-      weight: '260lbs',
-      age: '27',
-      hair: 'Brown',
-      eyes: 'Brown',
-      skin: 'Black',
-      misc: '',
-    },
-    points: {
-      hp: '',
-      gp: '',
-      level: '',
-      xp: '',
-      notes: '',
-    },
-    abilities: {
-      str: '',
-      dex: '',
-      con: '',
-      int: '',
-      wis: '',
-      cha: '',
-    },
-    attack: {
-      melee: '',
-      range: '',
-      bab: '',
-      cmb: '',
-      conc: '',
-      init: '',
-    },
-    defense: {
-      ac: '',
-      touch: '',
-      cmd: '',
-      fort: '',
-      ref: '',
-      will: '',
-    },
-    equipment: {
-      'weapon 1': '',
-      'weapon 2': '',
-      'armor 1': '',
-      'armor 2': '',
-      'misc 1': '',
-      'misc 2': '',
-    },
   },
 };
