@@ -37,7 +37,6 @@ class WhiteTree extends Component {
       this.setState(() => ({
         user,
       }));
-      console.log(user.displayName);
     });
   };
 
@@ -81,8 +80,12 @@ class WhiteTree extends Component {
             {this.state.user && (
               <label>Welcome {this.state.user.displayName}</label>
             )}
-            <button onClick={this.handleSignIn}> SIGN IN </button>
-            <button onClick={this.handleSignOut}> SIGN OUT </button>
+            {!this.state.user ? (
+              <button onClick={this.handleSignIn}> SIGN IN </button>
+            ) : (
+              <button onClick={this.handleSignOut}> SIGN OUT </button>
+            )}
+
             {this.renderFormSection('general')}
             {this.renderFormSection('physical')}
             {this.renderFormSection('points')}
