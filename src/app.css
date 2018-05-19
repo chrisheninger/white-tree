@@ -1,0 +1,125 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.character {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.character-background {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: space-between;
+  margin: 12px 8px;
+}
+
+.character-stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.stats-section {
+  max-width: 325px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  padding: 4px;
+  margin: 12px;
+}
+
+.welcome-label {
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.section-label {
+  text-transform: uppercase;
+  margin-top: 16px;
+  font-size: 18px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background: white;
+  border: none;
+  margin: 32px auto;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+#signin-button {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #4285f4;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid #4285f4;
+}
+
+#signin-button:hover {
+  box-shadow: inset 0px 0px 0px 2px #4285f4;
+  border-radius: 5px;
+}
+
+.generic-button {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #4285f4;
+  font-size: 16px;
+  font-weight: 400;
+  border: 2px solid #4285f4;
+  margin: 0 4px;
+}
+
+.generic-button:hover {
+  box-shadow: inset 0px 0px 0px 2px #4285f4;
+  border-radius: 5px;
+}
+
+#save-button {
+  background-color: #4285f4;
+  border-color: #fff;
+  color: #fff;
+}
+
+#save-button:hover {
+  box-shadow: inset 0px 0px 0px 2px #fff;
+  border-radius: 5px;
+}
+
+.button-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 8px;
+}
+
+.buttons-container {
+  display: flex;
+  padding: 0 8px;
+  flex-direction: row;
+}

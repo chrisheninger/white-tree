@@ -5,6 +5,8 @@ import firebase, { auth, GoogleAuthProvider } from './firebase.js';
 import { defaultCharacterShape } from './data';
 import Layout from './Layout';
 
+import './app.css';
+
 class WhiteTree extends Component {
   constructor(props) {
     super(props);
@@ -59,10 +61,12 @@ class WhiteTree extends Component {
       .database()
       .ref('users/' + this.state.user.uid)
       .once('value', function(snap) {
-        console.log(snap.val());
-        self.setState({
-          character: snap.val().character,
-        });
+        const val = snap.val();
+        if (val && val.character) {
+          self.setState({
+            character: val.character,
+          });
+        }
       });
   };
 
@@ -104,35 +108,71 @@ class WhiteTree extends Component {
         <div className="character">
           <div className="character-background">
             {this.state.user && (
-              <label>Welcome {this.state.user.displayName}</label>
-            )}
-            {!this.state.user ? (
-              <button onClick={this.handleSignIn}> SIGN IN </button>
-            ) : (
-              <button onClick={this.handleSignOut}> SIGN OUT </button>
+              <label className="welcome-label">
+                Welcome {this.state.user.displayName}
+              </label>
             )}
 
-            {this.state.user && (
-              <div>
-                <button onClick={() => this.handleSubmit()}>
-                  Submit Your Data
+            <div class="buttons-container">
+              {!this.state.user ? (
+                <button onClick={this.handleSignIn} id="signin-button">
+                  <img
+                    src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/google-logo-icon-PNG-Transparent-Background.png"
+                    className="button-icon"
+                  />SIGN IN
                 </button>
-                <button onClick={() => this.retrieveData()}>
-                  Retrieve Data
+              ) : (
+                <button onClick={this.handleSignOut} class="generic-button">
+                  SIGN OUT
                 </button>
+              )}
+
+              {this.state.user && (
+                <div>
+                  <button
+                    onClick={() => this.handleSubmit()}
+                    className="generic-button"
+                    id="save-button"
+                  >
+                    SAVE
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {this.state.user && (
+            <div className="character-stats" visible={this.state.user}>
+              <div className="stats-section">
+                <label className="section-label"> General </label>
+                {this.renderFormSection('general')}
               </div>
-            )}
-
-            {this.renderFormSection('general')}
-            {this.renderFormSection('physical')}
-            {this.renderFormSection('points')}
-          </div>
-          <div className="character-stats">
-            {this.renderFormSection('abilities')}
-            {this.renderFormSection('attack')}
-            {this.renderFormSection('defense')}
-            {this.renderFormSection('equipment')}
-          </div>
+              <div className="stats-section">
+                <label className="section-label"> Appearance </label>
+                {this.renderFormSection('appearance')}
+              </div>
+              <div className="stats-section">
+                <label className="section-label"> Points </label>
+                {this.renderFormSection('points')}
+              </div>
+              <div className="stats-section">
+                <label className="section-label"> Abilities </label>
+                {this.renderFormSection('abilities')}
+              </div>
+              <div className="stats-section">
+                <label className="section-label"> Attack </label>
+                {this.renderFormSection('attack')}
+              </div>
+              <div className="stats-section">
+                <label className="section-label"> Defense </label>
+                {this.renderFormSection('defense')}
+              </div>
+              <div className="stats-section">
+                <label className="section-label"> Equipment </label>
+                {this.renderFormSection('equipment')}
+              </div>
+            </div>
+          )}
         </div>
       </Layout>
     );

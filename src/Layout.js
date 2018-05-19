@@ -17,9 +17,8 @@ export default withStyles({
     alignItems: 'center',
     backgroundAttachment: 'fixed',
     backgroundColor: '#444',
-    backgroundImage: `url('${background}')`,
-    backgroundPosition: 'top center',
-    backgroundRepeat: 'no-repeat',
+    background: `url('${background}') no-repeat center center fixed`,
+    backgroundSize: `cover`,
     padding: '8px',
   },
 })(Layout);
