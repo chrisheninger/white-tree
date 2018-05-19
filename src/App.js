@@ -61,10 +61,14 @@ class WhiteTree extends Component {
       .database()
       .ref('users/' + this.state.user.uid)
       .once('value', function(snap) {
-        const val = snap.val();
-        if (val && val.character) {
+        const characterSnapshot = snap.val() && snap.val().character;
+        const mergedCharacter = {
+          ...defaultCharacterShape,
+          ...characterSnapshot,
+        };
+        if (characterSnapshot) {
           self.setState({
-            character: val.character,
+            character: mergedCharacter,
           });
         }
       });
@@ -83,6 +87,8 @@ class WhiteTree extends Component {
       <TextField
         key={input}
         label={input}
+        multiline={input === 'note' ? true : false}
+        rows="22"
         value={this.state.character[section][input]}
         onChange={e => this.onInputChange(section, input, e.target.value)}
         fullWidth
@@ -98,7 +104,12 @@ class WhiteTree extends Component {
     const sectionKeys = Object.keys(this.state.character[section]);
 
     return (
-      <div>{sectionKeys.map(this.renderFormInput.bind(this, section))}</div>
+      <div className="stats-section">
+        <div className="section-label"> {section.toUpperCase()} </div>
+        <div className="section-fields">
+          {sectionKeys.map(this.renderFormInput.bind(this, section))}
+        </div>
+      </div>
     );
   }
 
@@ -143,34 +154,18 @@ class WhiteTree extends Component {
 
           {this.state.user && (
             <div className="character-stats" visible={this.state.user}>
-              <div className="stats-section">
-                <label className="section-label"> General </label>
-                {this.renderFormSection('general')}
-              </div>
-              <div className="stats-section">
-                <label className="section-label"> Appearance </label>
-                {this.renderFormSection('appearance')}
-              </div>
-              <div className="stats-section">
-                <label className="section-label"> Points </label>
-                {this.renderFormSection('points')}
-              </div>
-              <div className="stats-section">
-                <label className="section-label"> Abilities </label>
-                {this.renderFormSection('abilities')}
-              </div>
-              <div className="stats-section">
-                <label className="section-label"> Attack </label>
-                {this.renderFormSection('attack')}
-              </div>
-              <div className="stats-section">
-                <label className="section-label"> Defense </label>
-                {this.renderFormSection('defense')}
-              </div>
-              <div className="stats-section">
-                <label className="section-label"> Equipment </label>
-                {this.renderFormSection('equipment')}
-              </div>
+              {this.renderFormSection('general')}
+              {this.renderFormSection('appearance')}
+              {this.renderFormSection('points')}
+              {this.renderFormSection('abilities')}
+              {this.renderFormSection('attack')}
+              {this.renderFormSection('defense')}
+              {this.renderFormSection('equipment')}
+              {this.renderFormSection('feats')}
+              {this.renderFormSection('skills')}
+              {this.renderFormSection('specialAbilities')}
+              {this.renderFormSection('backstory')}
+              {this.renderFormSection('notes')}
             </div>
           )}
         </div>

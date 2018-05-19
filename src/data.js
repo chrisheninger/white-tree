@@ -61,4 +61,62 @@ export const defaultCharacterShape = {
     items: '',
     weapons: '',
   },
+
+  skills: {
+    acrobatics: '',
+    appraise: '',
+    bluff: '',
+    craft: '',
+    diplomacy: '',
+    disableDevice: '',
+    disguise: '',
+    escapeArtist: '',
+    fly: '',
+    handleAnimal: '',
+    heal: '',
+    intimidate: '',
+    knowledgeArcana: '',
+    knowledgeDungeoneering: '',
+    knowledgeEngineering: '',
+    knowledgeGeography: '',
+    knowledgeHistory: '',
+    knowledgeLocal: '',
+    knowledgeNature: '',
+    knowledgeNobility: '',
+    knowledgePlanes: '',
+    knowledgeReligion: '',
+    Linguistics: '',
+    Perception: '',
+    Perform: '',
+    Profession: '',
+    Ride: '',
+    SenseMotive: '',
+    SleightOfHand: '',
+    Spellcraft: '',
+    Stealth: '',
+    Survival: '',
+    Swim: '',
+    UseMagicDevice: '',
+  },
+
+  feats: {
+    feat1: '',
+    feat1Description: '',
+    feat2: '',
+    feat2Description: '',
+    feat3: '',
+    feat3Description: '',
+  },
+
+  specialAbilities: {
+    note: '',
+  },
+
+  backstory: {
+    note: '',
+  },
+
+  notes: {
+    note: '',
+  },
 };
